@@ -1,12 +1,13 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {BasePageComponent} from '../../partials/base-page/base-page.component';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-library',
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
-export class HomeComponent extends BasePageComponent implements OnInit{
+export class LibraryComponent extends BasePageComponent implements OnInit{
 
   constructor(route:ActivatedRoute){
     super(route);
