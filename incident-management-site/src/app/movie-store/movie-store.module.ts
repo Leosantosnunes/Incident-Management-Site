@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ModelModule } from '../model/model.module';
 import { MovieStoreComponent } from './movie-store.component';
+import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 
 @NgModule({
     imports: [ ModelModule,BrowserModule,FormsModule],
-    declarations: [MovieStoreComponent],
-    exports:[MovieStoreComponent]
+    declarations: [MovieStoreComponent, CartSummaryComponent],
+    exports:[MovieStoreComponent, CartSummaryComponent]
 })
 export class MovieStoreModule{
 

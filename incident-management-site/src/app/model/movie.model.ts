@@ -6,6 +6,7 @@ export class Movie
         public director ?: string,
         public releaseDate ?: string,
         public imdbRating ?: number,
-        public posterUrl?: string     
+        public posterUrl?: string,
+        public price ?: number     
     ){} 
 }
