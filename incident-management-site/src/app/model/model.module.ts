@@ -5,4 +5,4 @@ import { StaticDataSource } from './static.datasource';
 @NgModule({
     providers: [MovieRepository,StaticDataSource]
 })
-export class MovieModule{}
+export class ModelModule{}

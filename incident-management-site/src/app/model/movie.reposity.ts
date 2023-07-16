@@ -5,8 +5,8 @@ import {StaticDataSource} from './static.datasource';
 @Injectable()
 export class MovieRepository
 {
-    private movies: Movie[] = new Array<Movie>();
-    private directors: string[] = new Array<string>();
+    private movies : Movie[] = new Array<Movie>();
+    public directors : (string | undefined)[] = []
 
     constructor
     (
@@ -15,22 +15,21 @@ export class MovieRepository
     {
         dataSource.getMovies().subscribe(data =>
             {
-            this.movies = data;
-            //this.directors = ...
-            var directors = data.map(b=> b.director).filter((a,index,array) => array.indexOf(a) === index).sort();
+            this.movies = data;            
+            this.directors = data.map(b => b.director).filter((a,index,array) => array.indexOf(a) === index).sort();
         })
-    }
+     }
     //director:string = null
-    getMovies(director:string = ''): Movie[]
+    getMovies(director:(string) = ''): Movie[]
     {
-        return this.movies.filter(b => director == null || director == b.director);
+        return this.movies.filter(b => director == '' || director == b.director);
     }
     getMovie(id:number): Movie
     {
         //no "!"
-        return this.movies.find(b => b._id == id )!;
+        return this.movies.find(b => b._id == id)!;
     }
-    getDirectors(): String[]
+    getDirectors(): (string | undefined)[]
     {
         return this.directors;
     }

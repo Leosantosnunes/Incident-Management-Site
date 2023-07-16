@@ -1,10 +1,10 @@
 export class Movie
 {
-    constructor(
+    constructor(        
         public _id?: number,
         public title?: string,
-        public director?: string,
-        public releaseDate ?: String,
+        public director ?: string,
+        public releaseDate ?: string,
         public imdbRating ?: number,
         public posterUrl?: string     
     ){} 
