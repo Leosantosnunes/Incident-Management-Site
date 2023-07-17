@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Movie } from '../model/movie.model';
 import { MovieRepository } from '../model/movie.reposity';
+import { Cart } from '../model/cart.model';
 
 @Component({
   selector: 'app-movie-store',
@@ -13,7 +14,7 @@ export class MovieStoreComponent{
   public moviesPerPage : number = 4;
   public selectedPage : number  = 1;
 
-  constructor(private repository:MovieRepository){}
+  constructor(private repository:MovieRepository, private cart:Cart){}
  
   get movies():Movie[]
   {
@@ -42,6 +43,10 @@ export class MovieStoreComponent{
 
   get pageCount(): number{
     return Math.ceil(this.repository.getMovies(this.selectedDirector).length / this.moviesPerPage)
+  }
+
+  addMovieToCart(movie: Movie):void{
+    this.cart.addLine(movie);
   }
 
   handleChangePageSize(event: Event): void {

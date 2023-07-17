@@ -1,7 +1,7 @@
 module.exports = function() {
     return{
         
-            movies: [
+            "movie-list": [
               {
                 id:1,
                 "title": "Toy Story",

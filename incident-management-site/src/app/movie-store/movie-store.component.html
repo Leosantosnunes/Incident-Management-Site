@@ -1,4 +1,11 @@
-<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col bg-dark text-white"></div>
+        </div>
+    </div>
+    
+    
+    <div class="container-fluid">
     <div class="row">
 
         <div class="col-2 p-3 ">
@@ -12,11 +19,12 @@
         <div class="col-9 p-2">
             <div *ngFor='let movie of movies' class="card m-1 p-1 bg-light">
                 <h4>
-                    {{movie.title}}<span class="badge m-1 p-1 bg-light float-right">
-                        {{movie.price | currency: 'USD':'symbol':'2.2-2'}}
+                    {{movie.title}}<span class="btn btn-info btn-sm float-right">
+                        {{movie.price | currency: 'USD':'symbol':'1.2-2'}}
                 </span></h4>
                 <div class="card-text bg-white p-1">
                     {{movie.releaseDate}}
+                    <button class="btn btn-success btn-sm float-right" (click)="addMovieToCart(movie)">Add to Cart</button>
                 </div>
             </div>
             <div class="form-inline  float-left mr-1">

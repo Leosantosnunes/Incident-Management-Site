@@ -4,7 +4,7 @@ const USERNAME = 'admin';
 const PASSWORD = '123456';
 const mappings = {
   get: ['/api/orders', '/orders'],
-  post: ['/api/movies-list', '/movies'],
+  post: ['/api/movie-list', '/movie-list'],
 };
 
 function requiresAuth(method, url) {
