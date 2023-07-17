@@ -8,14 +8,46 @@ import { MovieRepository } from '../model/movie.reposity';
   styleUrls: ['./movie-store.component.css']
 })
 export class MovieStoreComponent{
+
+  public selectedDirector ?: string = '';
+  public moviesPerPage : number = 4;
+  public selectedPage : number  = 1;
+
   constructor(private repository:MovieRepository){}
  
   get movies():Movie[]
   {
-    return this.repository.getMovies();
+    const pageIndex = (this.selectedPage -1) * this.moviesPerPage;
+    return this.repository.getMovies(this.selectedDirector).slice(pageIndex, pageIndex + this.moviesPerPage)!;
   }
 
   get directors(): (string|undefined)[]{
     return this.repository.getDirectors();
+  }
+
+  changeDirector(newDirector?: string):void{
+    this.selectedDirector = newDirector;
+  }
+
+  changePage(newPage: number): void{
+    this.selectedPage = newPage;
+  }
+
+  changePageSize(newSize: number): void{    
+    this.moviesPerPage = Number(newSize);
+    this.changePage(1);
+  } 
+
+
+
+  get pageCount(): number{
+    return Math.ceil(this.repository.getMovies(this.selectedDirector).length / this.moviesPerPage)
+  }
+
+  handleChangePageSize(event: Event): void {
+    const newSize = (event.target as HTMLSelectElement).value;
+    if (newSize) {
+      this.changePageSize(Number(newSize));
+    }
   }
 }

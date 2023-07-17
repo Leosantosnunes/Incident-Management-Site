@@ -5,35 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './partials/header/header.component';
-import { FooterComponent } from './partials/footer/footer.component';
-import { HomeComponent } from './pages/home/home.component';
-import { BasePageComponent } from './partials/base-page/base-page.component';
-import { LibraryComponent } from './pages/library/library.component';
-import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
+import { PagesModule } from './pages/pages.module';
+import { PartialsModule } from './partials/partials.module';
+
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    BasePageComponent,        
-    LibraryComponent,
-    AboutComponent,
-    ContactComponent
-    
-    
-    
+    AppComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,    
-    MovieStoreModule
+    MovieStoreModule,
+    PagesModule,
+    PartialsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
