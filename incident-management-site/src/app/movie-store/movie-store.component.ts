@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Movie } from '../model/movie.model';
 import { MovieRepository } from '../model/movie.reposity';
 import { Cart } from '../model/cart.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-store',
@@ -14,7 +15,7 @@ export class MovieStoreComponent{
   public moviesPerPage : number = 4;
   public selectedPage : number  = 1;
 
-  constructor(private repository:MovieRepository, private cart:Cart){}
+  constructor(private repository:MovieRepository, private cart:Cart, private router: Router){}
  
   get movies():Movie[]
   {
@@ -47,6 +48,7 @@ export class MovieStoreComponent{
 
   addMovieToCart(movie: Movie):void{
     this.cart.addLine(movie);
+    this.router.navigateByUrl('/cart')
   }
 
   handleChangePageSize(event: Event): void {

@@ -5,14 +5,18 @@ import { LibraryComponent } from './pages/library/library.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { MovieStoreComponent } from './movie-store/movie-store.component';
+import { CheckOutComponent } from './movie-store/check-out/check-out.component';
+import { CartDetailComponent } from './movie-store/cart-detail/cart-detail.component';
 
 const routes: Routes = [
-  {path: 'Home', component: HomeComponent, data:{title:'Home'}},
-  {path: 'MovieStore', component: MovieStoreComponent, data:{title:'Store'}},
-  {path: 'Library', component: LibraryComponent, data:{title:'Library'}},
-  {path: 'About', component: AboutComponent, data:{title:'About'}},
-  {path: 'Contact', component: ContactComponent, data:{title:'Contact'}}
-  
+  {path: 'home', component: HomeComponent, data:{title:'Home'}},
+  {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}},
+  {path: 'cart', component: CartDetailComponent, data:{title:'Shopping-Cart'}},
+  {path: 'checkout', component: CheckOutComponent, data:{title:'CheckOut'}},
+  {path: 'library', component: LibraryComponent, data:{title:'Library'}},
+  {path: 'about', component: AboutComponent, data:{title:'About'}},
+  {path: 'contact', component: ContactComponent, data:{title:'Contact'}},  
+  {path: '**', redirectTo: '/home'}  
 ];
 
 @NgModule({
