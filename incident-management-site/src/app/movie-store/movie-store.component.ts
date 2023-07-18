@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class MovieStoreComponent{
 
   public selectedDirector ?: string = '';
-  public moviesPerPage : number = 4;
+  public moviesPerPage : number = 9;
   public selectedPage : number  = 1;
 
   constructor(private repository:MovieRepository, private cart:Cart, private router: Router){}

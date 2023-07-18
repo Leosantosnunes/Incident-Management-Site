@@ -27,7 +27,7 @@ export class Cart
         this.recalculate();        
     }
 
-    removeLine(id: number): void {
+    removeLine(id ?: number): void {
         const index = this.lines.findIndex(l => l.movie._id === id);
         this.lines.splice(index,1);
         this.recalculate();
@@ -47,12 +47,21 @@ export class Cart
             this.cartPrice += (l.quantity * l.movie.price!);
         })
     }
+
+    handleUpdateQuantity(event: Event, movie: Movie): void {
+        const quantity = (event.target as HTMLSelectElement).value;
+        if(quantity){this.updateQuantity(movie, Number(quantity));}
+        
+      }
+    
 }
 export class CartLine
 {
     constructor(public movie:Movie,
-        public quantity: number)
-        {
+        public quantity: number)  { }
 
-        }
+    get lineTotal(): number 
+    {
+        return this.quantity * this.movie.price!;
+    }
 }

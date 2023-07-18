@@ -7,12 +7,13 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MovieStoreComponent } from './movie-store/movie-store.component';
 import { CheckOutComponent } from './movie-store/check-out/check-out.component';
 import { CartDetailComponent } from './movie-store/cart-detail/cart-detail.component';
+import { StoreFirstGuard } from './guards/storeFirst.guard';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, data:{title:'Home'}},
-  {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}},
-  {path: 'cart', component: CartDetailComponent, data:{title:'Shopping-Cart'}},
-  {path: 'checkout', component: CheckOutComponent, data:{title:'CheckOut'}},
+  {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}, canActivate:[StoreFirstGuard]},
+  {path: 'cart', component: CartDetailComponent, data:{title:'Shopping-Cart'}, canActivate:[StoreFirstGuard]},
+  {path: 'checkout', component: CheckOutComponent, data:{title:'CheckOut'}, canActivate:[StoreFirstGuard]},
   {path: 'library', component: LibraryComponent, data:{title:'Library'}},
   {path: 'about', component: AboutComponent, data:{title:'About'}},
   {path: 'contact', component: ContactComponent, data:{title:'Contact'}},
@@ -22,6 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [StoreFirstGuard]
 })
 export class AppRoutingModule { }
