@@ -1,0 +1,102 @@
+<!-- Students Name: Leonardo dos Santos Nunes
+StudentID: 301263098
+date: 06/09/2023 -->
+
+<%- include('partials/header.ejs'); %> 
+
+<%- include('partials/topnav.ejs'); %> 
+
+  <main>
+    <h1>PROJECTS</h1>
+    <br><br>
+    <div class="projects container text-center screenProjects">
+        <div class="row align-items-center">
+            <div class="col"><h3>Indoor Farm Management</h3></div>
+            <div class="col"><h3>Real Estate Template</h3></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"><a href="/projects/projectone" target="_blank"><img src="/images/projects/project1.jpg" alt="project1"></a></div>
+            <div class="col"><a href="/projects/projecttwo" target="_blank"><img src="/images/projects/project2.jpg" alt="project2"></a></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"><p>Description:</p><p>This project utilizes a Raspberry Pi, Python with Flask, JavaScript, HTML, and CSS to create a Smart Indoor Plant Management System. The goal is to monitor and manage indoor plants by measuring soil moisture, temperature, humidity, controlling lighting, and automating routine tasks for optimal plant care. The user-friendly web-based interface facilitates remote monitoring and control of the system.</p></div>
+            <div class="col"><p>Description:</p><p>This CSS and HTML template is designed for real estate websites, featuring four pages: Home, Active Listings, Contact, and Sitemap. The template offers a professional and responsive design, showcasing featured properties, displaying property listings, providing a contact form or details, and offering a sitemap for easy navigation. It provides a streamlined solution for real estate businesses to establish their online presence.</p></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"><h3>Credit card fraud analysis</h3></div>
+            <div class="col"><h3>Cat API</h3></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"><a href="/projects/projectthree" target="_blank"><img src="/images/projects/project3.jpg" alt="project4"></a></div>
+            <div class="col"><a href="/projects/projectfour" target="_blank"><img src="/images/projects/project4.jpg" alt="project4"></a></div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col"><p>Description:</p><p>This analysis utilizes a dataset of credit card transactions in the western United States. It includes customer details, merchant and purchase category information, and fraud indicators. Python, along with libraries like pandas, seaborn, and plotly, is employed for data analysis and visualization. The goal is to gain insights into credit card transactions and enhance fraud detection strategies.</p></div>            
+            <div class="col"><p>Description:</p><p>This page serves as a management platform for an API that provides access to a collection of cat pictures. Users can interact with the API to retrieve 9 pictures of cats at a time. Additionally, they have the ability to filter the pictures by categories of their choice. The page also includes a dedicated section where users can view and save their favorite cat pictures in an exclusive page. This platform offers a user-friendly interface for efficiently managing and enjoying a variety of cat pictures through the API.</p></div>
+        </div>
+    </div>
+    <div class="projects container text-center phoneProjects">
+        <div>
+            <div class="col"><h3>Indoor Farm Management</h3></div>
+            <div class="col"><a href="/projects/projectone" target="_blank"><img src="/images/projects/project1.jpg" alt="project1"></a></div>
+            <div class="col"><p>Description:</p><p>This project utilizes a Raspberry Pi, Python with Flask, JavaScript, HTML, and CSS to create a Smart Indoor Plant Management System. The goal is to monitor and manage indoor plants by measuring soil moisture, temperature, humidity, controlling lighting, and automating routine tasks for optimal plant care. The user-friendly web-based interface facilitates remote monitoring and control of the system.</p></div>
+        </div>
+        <div>
+            <div class="col"><h3>Real Estate Template</h3></div>
+            <div class="col"><a href="/projects/projecttwo" target="_blank"><img src="/images/projects/project2.jpg" alt="project2"></a></div>
+            <div class="col"><p>Description:</p><p>This CSS and HTML template is designed for real estate websites, featuring four pages: Home, Active Listings, Contact, and Sitemap. The template offers a professional and responsive design, showcasing featured properties, displaying property listings, providing a contact form or details, and offering a sitemap for easy navigation. It provides a streamlined solution for real estate businesses to establish their online presence.</p></div>
+        </div>
+        <div>
+            <div class="col"><h3>Credit card fraud analysis</h3></div>
+            <div class="col"><a href="/projects/projectthree" target="_blank"><img src="/images/projects/project3.jpg" alt="project4"></a></div>
+            <div class="col"><p>Description:</p><p>This analysis utilizes a dataset of credit card transactions in the western United States. It includes customer details, merchant and purchase category information, and fraud indicators. Python, along with libraries like pandas, seaborn, and plotly, is employed for data analysis and visualization. The goal is to gain insights into credit card transactions and enhance fraud detection strategies.</p></div>          
+        </div>  
+        <div>
+            <div class="col"><h3>Cat API</h3></div>
+            <div class="col"><a href="/projects/projectfour" target="_blank"><img src="/images/projects/project4.jpg" alt="project4"></a></div>
+            <div class="col"><p>Description:</p><p>This page serves as a management platform for an API that provides access to a collection of cat pictures. Users can interact with the API to retrieve 9 pictures of cats at a time. Additionally, they have the ability to filter the pictures by categories of their choice. The page also includes a dedicated section where users can view and save their favorite cat pictures in an exclusive page. This platform offers a user-friendly interface for efficiently managing and enjoying a variety of cat pictures through the API.</p></div>                  
+    </div>
+    </div>
+    <h1>ONGOING PROJECTS</h1>
+    <a href="projects/newProject" class="btn btn-warning btn-lg"><i class="fa-solid fa-file-pen fa-lg ";></i> Add new Project</a>
+    <br><br>
+    
+    <% for (let index = 0; index < ProjectList.length; index++) { %>
+    <table class="table table-striped table-hover text-center">
+          <tbody>                
+                <tr>
+                    <td scope="col">Project Title</td>
+                </tr>                    
+                <tr>
+                    <td><%= ProjectList[index].ptitle %></td>
+                </tr>
+                <tr>
+                    <td scope="col">Project Description</td>
+                </tr>
+                <tr>
+                    <td><%= ProjectList[index].pdescription %></td>
+                </tr>
+                <tr>
+                    <td scope="col">Project Deadline</td>
+                </tr>
+                <tr>
+                    <td><%= ProjectList[index].pdeadline %></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/projects/edit/<%= ProjectList[index].id %>" class="btn btn-info btn-sm"><i class="fa-solid fa-file-pen fa-lg"></i> Edit</a>
+                        <a class="btn btn-warning btn-sm" href="/projects/delete/<%= ProjectList[index].id %>"><i class="fa-solid fa-trash"></i> Delete</a>
+                    </td>
+                </tr>                            
+          </tbody>           
+    </table>
+    <% } %>
+  </main>  
+
+  <%- include('partials/footernav.ejs'); %>
+  <%- include('partials/footer.ejs'); %>

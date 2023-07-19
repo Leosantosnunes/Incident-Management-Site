@@ -1,0 +1,99 @@
+/* Students Name: Leonardo dos Santos Nunes
+StudentID: 301263098
+date: 06/09/2023 */
+
+
+body{   
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    background-image: url(../images/header2.jpg);
+    background-size: 1200px;   
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center; 
+
+   
+}
+#mainBody {
+    background-color: #ebebebeb;    
+    max-width: 730px;
+    width: 100%;   
+    position: absolute;   
+  }
+main{      
+    padding: 15px;
+}
+.welcome{
+    background-color: #cf8b2a;
+    font-weight:600;
+}
+.logo{
+    width: 40px;
+}
+
+.animation{
+    max-width: 680px;
+}
+#leo{
+    max-width: 300px;
+    border: 10px solid;
+    border-color: #cf8b2a;
+    border-radius: 10px;
+}
+.aboutme p{
+    padding: 10px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.projects img{
+    max-width: 250px;
+    max-height: 285px;
+}
+.projects .col{    
+    padding-bottom: 50px;
+}
+
+.phoneProjects .col{
+    display: none;
+}
+
+.ongoingP{
+    padding-top: 5px;
+}
+
+@media (max-width: 770px) {.phoneProjects .col{    
+    display: block;    
+}}
+
+@media (max-width: 770px) {.screenProjects .col{   
+    display: none;
+}}
+
+.services img{
+    max-width: 150px;
+    max-height: 285px;
+}
+
+.services p{    
+    padding: 10px;
+    text-align: left;
+}
+
+.screenServices .col{
+    min-width: 200px;
+}
+
+.phoneServices .col{
+    display: none;
+}
+
+@media (max-width: 770px) {.phoneServices .col{    
+    min-width: 250px;
+    display: block;
+    flex-direction: column;
+}}
+
+@media (max-width: 770px) {.screenServices .col{
+    width: 200px;
+    display: none;
+}}
