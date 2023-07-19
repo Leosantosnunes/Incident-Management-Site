@@ -11,7 +11,7 @@ import { PartialsModule } from '../partials/partials.module';
 @NgModule({
     imports: [ BrowserModule,FormsModule,PartialsModule],
     declarations: [AboutComponent,ContactComponent,HomeComponent,LibraryComponent],
-    exports:[AboutComponent,ContactComponent,HomeComponent,LibraryComponent]
+    exports:[AboutComponent,ContactComponent,HomeComponent,LibraryComponent,PartialsModule]
 })
 export class PagesModule{
 

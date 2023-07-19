@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Movie} from './movie.model';
 import {StaticDataSource} from './static.datasource';
+import { RestDataSource } from './rest.datasource';
 
 @Injectable()
 export class MovieRepository
@@ -10,7 +11,7 @@ export class MovieRepository
 
     constructor
     (
-      private dataSource: StaticDataSource  
+      private dataSource: RestDataSource  
     )
     {
         dataSource.getMovies().subscribe(data =>

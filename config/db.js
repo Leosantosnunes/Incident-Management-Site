@@ -1,3 +1,4 @@
 module.exports={
-    "URI":"mongodb://127.0.0.1:27017/PixarShop"
+    "URI":"mongodb://127.0.0.1:27017/PixarShop",
+    "Secret": 'SomeSecret'
 }

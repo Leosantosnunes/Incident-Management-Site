@@ -9,6 +9,6 @@ import { OrderRepository } from './order.repositoty';
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [MovieRepository,StaticDataSource,Cart,Order,OrderRepository,{provide:StaticDataSource,useClass:RestDataSource}]
+    providers: [MovieRepository,StaticDataSource,Cart,Order,OrderRepository,RestDataSource,{provide:StaticDataSource,useClass:RestDataSource}]
 })
 export class ModelModule{}

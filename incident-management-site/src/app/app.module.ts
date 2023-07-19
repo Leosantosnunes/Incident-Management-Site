@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MovieStoreModule } from './movie-store/movie-store.module';
 import { AppRoutingModule } from './app-routing.module';
-
-
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
-import { PartialsModule } from './partials/partials.module';
+import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 
 
-
+export function jwtTokenGetter():string
+{
+  return localStorage.getItem('id_token')!;
+}
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { PartialsModule } from './partials/partials.module';
     AppRoutingModule,    
     MovieStoreModule,
     PagesModule,
-    PartialsModule
+    JwtModule.forRoot({config:{tokenGetter: jwtTokenGetter}})
   ],
   providers: [],
   bootstrap: [AppComponent]
