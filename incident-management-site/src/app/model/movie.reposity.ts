@@ -16,6 +16,7 @@ export class MovieRepository
     {
         dataSource.getMovies().subscribe(data =>
             {
+            console.log(data);
             this.movies = data;            
             this.directors = data.map(b => b.director).filter((a,index,array) => array.indexOf(a) === index).sort();
         })

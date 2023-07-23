@@ -13,7 +13,7 @@ export class Movie
 
     public toString(): string
     {
-        return `Book 
+        return `Movie 
         --------------------------------
         Name:         ${this.title}
         Overview:     ${this.overview}

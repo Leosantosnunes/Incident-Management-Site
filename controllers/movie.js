@@ -7,18 +7,16 @@ let jwt = require('jsonwebtoken')
 // create a reference to the model
 let Movie = require('../models/movie');
 
-module.exports.displayMovieList = (req, res, next) => {
-    Movie.find((err, movieList) => {
-        if(err)
-        {
-            return console.error(err);
-        }
-        else
-        {
-            res.json(movieList);
-        }
-    });
-}
+module.exports.displayMovieList = async (req, res, next) => {
+    try {
+        const movieList = await Movie.find();
+        res.json(movieList);
+    } catch (err) {
+        console.error(err);
+        // Handle the error appropriately (e.g., send an error response)
+        res.status(500).json({ error: 'An error occurred while fetching movie list.' });
+    }
+};
 
 module.exports.displayAddPage = (req, res, next) => {   
     res.json({success: true, msg: 'Succesfully Displayed Add Page'});
