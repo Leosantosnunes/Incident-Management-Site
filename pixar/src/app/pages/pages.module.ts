@@ -6,10 +6,11 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { PartialsModule } from '../partials/partials.module';
+import { ModelModule } from '../model/model.module';
 
 
 @NgModule({
-    imports: [ BrowserModule,FormsModule,PartialsModule],
+    imports: [ BrowserModule,FormsModule,PartialsModule,ModelModule],
     declarations: [AboutComponent,ContactComponent,HomeComponent,LibraryComponent],
     exports:[AboutComponent,ContactComponent,HomeComponent,LibraryComponent,PartialsModule]
 })

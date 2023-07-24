@@ -1,21 +1,13 @@
-var express = require('express');
-var router = express.Router();
-let mongoose = require('mongoose');
+let express= require("express");
+let router = express.Router();
 
-//connect to model
-let Contact = require('../models/contact');
-const contact = require('../models/contact');
+let jwt = require("jsonwebtoken");
+
+let passport = require("passport");
+
+let contactController = require("../controllers/contact");
 
 /* POST Customer information. */
-router.post('/', (req, res, next) => { 
-  //getting data from form 
-  let newContact = Contact({"name":req.body.pname , 
-                  "email":req.body.email, 
-                  "message":req.body.newmessage});  
-
-  //insert data into the mongoDB
-  Contact.create(newContact);
-  res.redirect('/');
-});
+router.post('/request',contactController.addContactrequest);
 
 module.exports = router;

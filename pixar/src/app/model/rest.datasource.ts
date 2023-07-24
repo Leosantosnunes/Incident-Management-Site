@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Movie } from "./movie.model";
 import { Order } from "./order.model";
+import { Contact } from "./contact.model";
 import {JwtHelperService} from '@auth0/angular-jwt';
 
 const PROTOCOL = 'http';
@@ -45,6 +46,16 @@ export class RestDataSource
     getOrders(): Observable<Order[]>
     {
         return this.http.get<Order[]>(this.baseUrl + 'orders');
+    }
+
+    saveContact(contact: Contact): Observable<Contact>
+    {
+        return this.http.post<Contact>(this.baseUrl + 'contact/request', contact);
+    }
+
+    getContacts(): Observable<Contact[]>
+    {
+        return this.http.get<Contact[]>(this.baseUrl + 'contact')
     }
 
     private loadToken(): void
