@@ -34,6 +34,7 @@ var indexRouter = require('../routes/index');
 var usersRouter = require('../routes/users');
 var movieRouter = require('../routes/movie');
 var contactRouter = require('../routes/contact');
+var ordersRouter = require('../routes/order');
 
 var app = express();
 
@@ -68,6 +69,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movieStore', movieRouter);
 app.use('/contact', contactRouter);
+app.use('/orders', ordersRouter)
 
 //passport user configuration
 
