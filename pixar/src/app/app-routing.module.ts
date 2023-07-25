@@ -10,7 +10,7 @@ import { CartDetailComponent } from './movie-store/cart-detail/cart-detail.compo
 import { StoreFirstGuard } from './guards/storeFirst.guard';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, data:{title:'Home'}},
+  {path: 'home', component: HomeComponent, data:{title:'Pixar'}},
   {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}, canActivate:[StoreFirstGuard]},
   {path: 'cart', component: CartDetailComponent, data:{title:'Shopping-Cart'}, canActivate:[StoreFirstGuard]},
   {path: 'checkout', component: CheckOutComponent, data:{title:'CheckOut'}, canActivate:[StoreFirstGuard]},

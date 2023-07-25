@@ -32,10 +32,10 @@ export class RestDataSource
         `${PROTOCOL}://${location.hostname}:${PORT}/`;
     }
 
-    getMovies(): Observable<Movie[]>
+    getMovies(address: String): Observable<Movie[]>
     {
 
-        return this.http.get<Movie[]>(this.baseUrl + 'movieStore');
+        return this.http.get<Movie[]>(this.baseUrl + address);
     }
 
     saveOrder(order: Order): Observable<Order>

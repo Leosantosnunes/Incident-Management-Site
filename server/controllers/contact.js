@@ -11,7 +11,7 @@ let Contact = require('../models/contact');
 module.exports.addContactrequest = async(req, res, next) => { 
     //getting data from form 
      
-    let newContact = Contact({"name":req.body.pname , 
+    let newContact = Contact({"name":req.body.name , 
                     "email":req.body.email, 
                     "message":req.body.message});  
   

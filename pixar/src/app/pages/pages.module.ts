@@ -7,10 +7,10 @@ import { HomeComponent } from './home/home.component';
 import { LibraryComponent } from './library/library.component';
 import { PartialsModule } from '../partials/partials.module';
 import { ModelModule } from '../model/model.module';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [ BrowserModule,FormsModule,PartialsModule,ModelModule],
+    imports: [ BrowserModule,FormsModule,PartialsModule,ModelModule, RouterModule],
     declarations: [AboutComponent,ContactComponent,HomeComponent,LibraryComponent],
     exports:[AboutComponent,ContactComponent,HomeComponent,LibraryComponent,PartialsModule]
 })

@@ -14,7 +14,7 @@ export class MovieRepository
       private dataSource: RestDataSource  
     )
     {
-        dataSource.getMovies().subscribe(data =>
+        dataSource.getMovies('movieStore').subscribe(data =>
             {
             console.log(data);
             this.movies = data;            

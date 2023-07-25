@@ -31,6 +31,14 @@ export class MovieStoreComponent{
     this.selectedDirector = newDirector;
   }
 
+  handleChangeDirector(event: Event): void {
+    const newDirector = (event.target as HTMLSelectElement).value;
+    if (newDirector) {
+      this.changeDirector(String(newDirector));
+    }
+  }
+
+
   changePage(newPage: number): void{
     this.selectedPage = newPage;
   }
