@@ -1,23 +1,19 @@
-<app-base-page></app-base-page>
-<div class="container">
-    <div class="row">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade col m-0" data-bs-ride="carousel">
-            <div  class="carousel-inner ">
-              <div class="carousel-item active">
-                <img src="../../../assets/images/01_ts.jpg" class="d-block w-100" alt="...">
-              </div>
-              <div *ngFor='let movie of movies' class="carousel-item">
-                <img src="../../../assets/images/{{movie.posterUrl}}" class="d-block w-100" alt="...">
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>         
+
+<div class="container-lg min-vw-100" style="background-image: url('../../../assets/poster3.jpg'); background-size:cover; height: 600px;">
+  <div>
+    <div class="position-relative">
+      <img class="m-2" src="../../../assets/Pixar_logo_white.png" alt="logo" style="max-width: 200px;">
+      <button class="btn btn-danger position-absolute top-0 end-0 m-2">Sign In</button>
     </div>
+  </div>  
+  <br><br><br>
+  <h3 class="text-center text-white">Unlimited Movies, Animes, and more</h3> 
+  <h4 class="text-center text-white">Watch anywhere, Cancel anytime</h4>
+  <h4 class="text-center text-white">Ready to watch ? Enter your email to create or restart your membership.</h4> 
+  <br><br>
+  <div class="input-group mb-3 container d-flex justify-content-center">
+    <input type="text" class="form-outline w-50" placeholder="Email adress" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <button class="btn btn-danger" type="button" id="button-addon2">Get Started ></button>    
+  </div>  
+  <br><br><br><br><br>
 </div>

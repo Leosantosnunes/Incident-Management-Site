@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: 'library', component: LibraryComponent, data:{title:'Library'}},
   {path: 'about', component: AboutComponent, data:{title:'About'}},
   {path: 'contact', component: ContactComponent, data:{title:'Contact Page'}},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', redirectTo: '/home'}  
+  {path: '', redirectTo: '/movieStore', pathMatch: 'full'},
+  {path: '**', redirectTo: '/movieStore'}  
 ];
 
 @NgModule({

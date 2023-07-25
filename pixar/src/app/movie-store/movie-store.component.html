@@ -6,14 +6,18 @@
     [class.active] = 'director == selectedDirector' >{{director}}</option>
 </select>
 
-<div *ngFor='let movie of movies' class="" style="max-width: 250px;">
-    <img src="assets/images/{{movie.posterUrl}}" alt="poster" style="min-width: 200px; max-width: 100%;">
-    <h4>{{movie.title }}
-        <span class="badge text-bg-success">
-            {{movie.price | currency: 'USD':'symbol':'1.2-2'}}
-        </span>
-    </h4>
-    <button class="btn btn-info" (click)="addMovieToCart(movie)">Add to Cart </button>
+<div class="container">
+    <div class="row">
+        <div *ngFor='let movie of movies' class="col" style="max-width: 250px;">
+            <img src="assets/images/{{movie.posterUrl}}" alt="poster" style="min-width: 200px; max-width: 100%;">
+            <h4>{{movie.title }}
+                <span class="badge text-bg-success">
+                    {{movie.price | currency: 'USD':'symbol':'1.2-2'}}
+                </span>
+            </h4>
+            <button class="btn btn-info" (click)="addMovieToCart(movie)">Add to Cart </button>
+        </div>
+    </div>
 </div>
 
 <select class="" [value] = 'moviesPerPage' (change) = "handleChangePageSize($event)">
