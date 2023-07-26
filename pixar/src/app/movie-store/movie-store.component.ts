@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class MovieStoreComponent{
 
-  public selectedDirector ?: string = '';
+  public selectedFilter : any = '';
+  public selectedYear : number = 0;
   public moviesPerPage : number = 9;
   public selectedPage : number  = 1;
 
@@ -20,23 +21,72 @@ export class MovieStoreComponent{
   get movies():Movie[]
   {
     const pageIndex = (this.selectedPage -1) * this.moviesPerPage;
-    return this.repository.getMovies(this.selectedDirector).slice(pageIndex, pageIndex + this.moviesPerPage)!;
+    return this.repository.getMovies(this.selectedFilter).slice(pageIndex, pageIndex + this.moviesPerPage)!;
   }
 
   get directors(): (string|undefined)[]{
     return this.repository.getDirectors();
   }
 
-  changeDirector(newDirector?: string):void{
-    this.selectedDirector = newDirector;
+  get prices(): (number|undefined)[]{
+    return this.repository.getPrice();
   }
 
-  handleChangeDirector(event: Event): void {
-    const newDirector = (event.target as HTMLSelectElement).value;
-    if (newDirector) {
-      this.changeDirector(String(newDirector));
-    }
+  // get releaseYear(): (number|undefined)[]{
+  //   return this.repository.getReleaseYear();
+  // }
+
+  changeFilter(newFilter?: any):void{
+    this.selectedFilter = newFilter!;
   }
+
+    //Filter by director
+
+  handleChangeDirector(event: Event): void {
+    const newFilter = (event.target as HTMLSelectElement).value;
+    if (newFilter == '') {
+      this.changeFilter();
+    }
+    else{ 
+      this.changeFilter(newFilter)
+      console.log(typeof newFilter);
+    }
+  } 
+
+    //Filter by Price
+
+  handleChangePrice(event: Event): void {
+    const newFilter = (event.target as HTMLSelectElement).value;
+    if (newFilter == '') {
+      this.changeFilter();
+    }
+    else{ 
+      this.changeFilter(Number(newFilter))
+      console.log(typeof newFilter);
+    }
+  } 
+
+  // get moviesByYear():Movie[]
+  // {
+  //   const pageIndex = (this.selectedPage -1) * this.moviesPerPage;
+  //   return this.repository.GetMoviesByYear(this.selectedYear).slice(pageIndex, pageIndex + this.moviesPerPage)!;    
+  // }
+
+  // changeYear(newFilter?: number):void{
+  //   this.selectedYear = newFilter!;
+  //   console.log(this.selectedYear);
+  //   console.log(typeof newFilter);
+  // }
+
+  // handleChangeYear(event: Event): void {
+  //   const newFilter = (event.target as HTMLSelectElement).value;
+  //   if (newFilter == '') {
+  //     this.changeYear();
+  //   }
+  //   else{ 
+  //     this.changeYear(Number(newFilter));      
+  //   }
+  // } 
 
 
   changePage(newPage: number): void{
@@ -51,7 +101,7 @@ export class MovieStoreComponent{
 
 
   get pageCount(): number{
-    return Math.ceil(this.repository.getMovies(this.selectedDirector).length / this.moviesPerPage)
+    return Math.ceil(this.repository.getMovies(this.selectedFilter).length / this.moviesPerPage)
   }
 
   addMovieToCart(movie: Movie):void{

@@ -11,26 +11,6 @@ let DB = require('../config/db');
 let userModel = require('../models/user');
 let User = userModel.User; // alias
 
-module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayProductsPage = (req, res, next) => {
-    res.render('index', { title: 'Products', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', { title: 'Services', displayName: req.user ? req.user.displayName : ''});
-}
-
-module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', { title: 'Contact', displayName: req.user ? req.user.displayName : ''});
-}
-
 module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
     if(!req.user)
@@ -72,7 +52,6 @@ module.exports.processLoginPage = (req, res, next) => {
             const payload = 
             {
                 id: user._id,
-                displayName: user.displayName,
                 username: user.username,
                 email: user.email
             }
@@ -82,8 +61,7 @@ module.exports.processLoginPage = (req, res, next) => {
             });
             
             return res.json({success: true, msg: 'User Logged in Successfully!', user: {
-                id: user._id,
-                displayName: user.displayName,
+                id: user._id,                
                 username: user.username,
                 email: user.email
             }, token: authToken});            
@@ -98,8 +76,8 @@ module.exports.displayRegisterPage = (req, res, next) => {
         res.render('auth/register',
         {
             title: 'Register',
-            messages: req.flash('registerMessage'),
-            displayName: req.user ? req.user.displayName : ''
+            messages: req.flash('registerMessage')
+            
         });
     }
     else
@@ -113,8 +91,7 @@ module.exports.processRegisterPage = (req, res, next) => {
     let newUser = new User({
         username: req.body.username,
         //password: req.body.password
-        email: req.body.email,
-        displayName: req.body.displayName
+        email: req.body.email               
     });
 
     User.register(newUser, req.body.password, (err) => {
@@ -132,8 +109,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             return res.render('auth/register',
             {
                 title: 'Register',
-                messages: req.flash('registerMessage'),
-                displayName: req.user ? req.user.displayName : ''
+                messages: req.flash('registerMessage')                
             });
         }
         else

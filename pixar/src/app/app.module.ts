@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
+import { AuthModule } from './auth/auth.module';
+
 
 
 export function jwtTokenGetter():string
@@ -15,13 +17,14 @@ export function jwtTokenGetter():string
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,    
     MovieStoreModule,
     PagesModule,
+    AuthModule,
     JwtModule.forRoot({config:{tokenGetter: jwtTokenGetter}})
   ],
   providers: [],

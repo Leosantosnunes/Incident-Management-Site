@@ -5,7 +5,7 @@ export class Movie
         public title?: string,
         public overview ?: string,
         public director ?: string,
-        public releaseDate ?: string,
+        public releaseDate ?: Date,
         public imdbRating ?: number,
         public posterUrl?: string,
         public price ?: number     
