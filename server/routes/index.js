@@ -1,15 +1,21 @@
 var express = require('express');
 var router = express.Router();
+let passport = require('passport');
+
+// Parse Json
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
+
+// Get our authenticate module
+var authenticate = require('../config/authenticate');
 
 let indexController = require('../controllers/index');
 
 router.get('/logout', indexController.performLogout);
 
-//router.get('/login', indexController.displayUserList);
+router.get('/login',authenticate.verifyUser, indexController.displayUserList);
 
-router.get('/login', indexController.validateToken);
-
-router.post('/login', indexController.processLoginPage);
+router.post('/login',passport.authenticate('local'), indexController.processLoginPage);
 
 router.post('/register', indexController.processRegisterPage);
 

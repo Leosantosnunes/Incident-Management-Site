@@ -9,12 +9,7 @@ var cors = require('cors');
 let session = require('express-session');
 let passport = require('passport');
 
-let passportJWT = require('passport-jwt');
-let JWTStrategy = passportJWT.Strategy;
-let ExtractJWT = passportJWT.ExtractJwt;
 
-let passportLocal = require('passport-local');
-let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
 //Database Setup
@@ -73,40 +68,8 @@ app.use('/orders', ordersRouter)
 
 //passport user configuration
 
-//create a User Model Instance
-let userModel = require("../models/user");
-let User= userModel.User;
-
-//implement a User Authentication Strategy
-passport.use(User.createStrategy());
-
-//serialize and deserialize the User info
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = DB.Secret;
 
 
-
-let strategy = new JWTStrategy(jwtOptions, async (jwt_payload, done) => {
-  try {
-    const user = await User.findById(jwt_payload.id);
-
-    if (user) {
-      return done(null, user);
-    } else {
-      return done(null, false);
-      // or you could create a new account
-    }
-  } catch (err) {
-    return done(err, false);
-  }
-});
-
-passport.use(strategy);
 
 
 
