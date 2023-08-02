@@ -17,7 +17,7 @@ const PORT = 3500;
 @Injectable()
 export class RestDataSource
 {
-    user ?: User = new User();
+    user ?: User;
     baseUrl: string = '';
     authToken : string = '';
 
@@ -31,8 +31,7 @@ export class RestDataSource
     };
 
     constructor(private http: HttpClient, private jwtService: JwtHelperService)
-    {   
-        this.user = new User();
+    {           
         this.baseUrl = 
         `${PROTOCOL}://${location.hostname}:${PORT}/`;
     }
@@ -48,6 +47,11 @@ export class RestDataSource
         return this.http.post<Order>(this.baseUrl + 'orders/add', order);
     }
 
+    registerNewUser(user:User): Observable<any>
+    {
+        return this.http.post<any>(this.baseUrl + 'register', user);
+    }
+
     authenticate(user:User): Observable<any>
     {        
         return this.http.post<any>(this.baseUrl + 'login', user,this.httpOptions);
@@ -56,10 +60,9 @@ export class RestDataSource
 
     storeUserData(token:any, user: User): void
     {
+        this.user = user;        
         localStorage.setItem('id_token', 'Bearer ' + token);
-        localStorage.setItem('user', JSON.stringify(user)); 
-        console.log(token);       
-        this.user = user;
+        localStorage.setItem('user', JSON.stringify(user));       
     }
 
     logout(): Observable<any>
@@ -73,7 +76,9 @@ export class RestDataSource
 
     loggedIn():Boolean
     {
+        this.loadToken();        
         return !this.jwtService.isTokenExpired(this.authToken);
+         
     }
 
     getOrders(): Observable<Order[]>
@@ -92,10 +97,12 @@ export class RestDataSource
         return this.http.get<Contact[]>(this.baseUrl + 'contact')
     }
 
-    private loadToken(): void
-    {
-      const token = localStorage.getItem('id_token');
-      this.authToken = token!;
-      this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
-    }
+    private loadToken(): void {
+        const token = localStorage.getItem('id_token');        
+        this.authToken = token || ''; // Assign an empty string if token is null
+        this.httpOptions.headers = this.httpOptions.headers.set(
+          'Authorization',
+          this.authToken
+        );
+      }
 }

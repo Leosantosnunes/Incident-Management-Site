@@ -5,23 +5,16 @@ import { LoginComponent } from "./login/login.component";
 import { SigninComponent } from "./signin/signin.component";
 import { ModelModule } from "../model/model.module";
 import { FormsModule } from "@angular/forms";
-import { AuthGuard } from "./login/auth.guard";
-import { AdminComponent } from "./admin.component";
+import { AuthGuard } from "../guards/auth.guard";
 import { CommonModule } from "@angular/common";
 import { PartialsModule } from "../partials/partials.module";
+import { AdminComponent } from "./admin/admin.component";
 
-const routing = RouterModule.forChild([
-    {path: 'login', component: LoginComponent},
-    {path: 'admin', component: AdminComponent, canActivate:[AuthGuard],
-    children: [{path: '**', redirectTo: 'movieStore'}  ]},
-    {path: '**', redirectTo: 'movieStore'}
-]);
 
 @NgModule({
-    imports: [RouterModule, ModelModule,CommonModule, FormsModule,PartialsModule, routing],
+    imports: [RouterModule, ModelModule,CommonModule, FormsModule,PartialsModule],
     providers:[AuthGuard],
-    declarations: [HomeComponent,LoginComponent,SigninComponent, AdminComponent],
-    exports:[HomeComponent, LoginComponent, SigninComponent, AdminComponent]
+    declarations: [HomeComponent,LoginComponent,SigninComponent,AdminComponent]    
 })
 export class AuthModule{};
 

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private auth:AuthService){}
 
   ngOnInit(): void {
-    this.user = new User();
+    this.user = new User();    
   }
 
   authenticate(form: NgForm): void
@@ -29,11 +29,17 @@ export class LoginComponent implements OnInit {
       this.auth.authenticate(this.user).subscribe(data =>{
         if(data.success){
           this.auth.storeUserData(data.token,data.user);
-          this.router.navigateByUrl('/admin');
+          if(this.user.username == 'adminTest')
+          { 
+            this.router.navigateByUrl('/admin');
+          }
+          else
+          {
+            this.router.navigateByUrl('/movieStore');
+          }
+          console.log(data.user);
         }
-      })
-
-      this.router.navigateByUrl("/admin")
+      });      
     }
     else
     {

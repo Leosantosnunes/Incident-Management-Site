@@ -32,48 +32,14 @@ module.exports.processLoginPage = (req, res) => {
  
  // Create a token
  var token = authenticate.getToken({_id: req.user._id});
+
+ const user = req.user;
  
  // Response
  res.statusCode = 200;
  res.setHeader('Content-Type', 'application/json');
- res.json({success: true, token: token, status: 'You are successfully logged in!'});
+ res.json({success: true,user: user,token: token, status: 'You are successfully logged in!'});
 };
-
-
-
-/*module.exports.processRegisterPage = (req, res, next) => {
-    // instantiate a user object
-    let newUser = new User({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
-        displayName: req.body.displayName               
-    });
-
-    User.register(newUser, req.body.password, (err) => {
-        if(err)
-        {
-            console.log("Error: Inserting New User");
-            if(err.name == "UserExistsError")
-            {
-                req.flash(
-                    'registerMessage',
-                    'Registration Error: User Already Exists!'
-                );
-                console.log('Error: User Already Exists!')
-            }
-            res.json({success: true, msg: "Successfully Registered User"});
-        }
-        else
-        {
-            // if no error exists, then registration is successful
-
-            // redirect the user and authenticate them
-
-            return res.json({success: true, msg: 'User Registered Successfully!'});
-        }
-    });
-}*/
 
 module.exports.processRegisterPage = (req, res, next) => {
     
@@ -106,7 +72,14 @@ module.exports.processRegisterPage = (req, res, next) => {
 
 
 module.exports.performLogout = (req, res, next) => {
-    req.logout();
-    //res.redirect('/');
-    res.json({success: true, msg: 'User Successfully Logged out!'});
-}
+    if (req.session) {
+      req.session.destroy();
+      res.clearCookie('session-id');      
+    }
+    else {
+      var err = new Error('You are not logged in!');
+      err.status = 403;
+      next(err);
+    }
+   };
+

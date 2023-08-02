@@ -16,19 +16,20 @@ user: User = new User();
   constructor(private authService:AuthService, private router: Router){}
 
   ngOnInit(): void {
-    this.user= new User();
-    console.log(this.isLoggedIn());
+    this.user= new User();    
   }
 
   onLogoutClick(): void
   {
-    this.authService.logout().subscribe(data => {this.router.navigate(['/home'])});
+    this.authService.logout()
+    this.router.navigate(['home']);
   }
 
   isLoggedIn(): Boolean
   {
     const result = this.authService.authenticated;
-    if(result)
+    console.log(result);
+    if (result)
     {
       this.user = JSON.parse(localStorage.getItem('user')!);
     }

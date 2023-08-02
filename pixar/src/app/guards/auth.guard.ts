@@ -12,7 +12,8 @@ export class AuthGuard{
         private auth:AuthService){}
 
     canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot): Boolean 
-    {
+    {   
+        console.log('test');
         if(this.auth.authenticated)
         {
             console.log('authenticated');
@@ -22,6 +23,7 @@ export class AuthGuard{
         {
             console.log('cannot authenticate');
             this.router.navigate(['home','login','register']);
+            this.router.navigateByUrl('home');
             return false;
         }
     }

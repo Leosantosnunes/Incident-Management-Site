@@ -24,8 +24,8 @@ export function jwtTokenGetter():string
     BrowserModule,
     AppRoutingModule,    
     MovieStoreModule,
-    PagesModule,
     AuthModule,
+    PagesModule,  
     JwtModule.forRoot({config:{tokenGetter: jwtTokenGetter}})
   ],
   providers: [],

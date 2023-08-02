@@ -91,10 +91,9 @@ export class MovieStoreComponent {
 
   handleMouseOver(event: Event): void {
     const MouseOver = (event.target as HTMLElement).querySelectorAll('MovieList');
-    console.log(MouseOver);
+    
     if (MouseOver) {
-      this.mouseOut();
-      console.log(MouseOver);
+      this.mouseOut();      
     }
   }
 
