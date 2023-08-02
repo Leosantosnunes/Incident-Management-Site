@@ -7,9 +7,10 @@ import { CounterDirective } from './counter.directive';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { RouterModule } from '@angular/router';
+import { PartialsModule } from '../partials/partials.module';
 
 @NgModule({
-    imports: [ ModelModule,BrowserModule,FormsModule,RouterModule],
+    imports: [ ModelModule,BrowserModule,FormsModule,RouterModule,PartialsModule],
     declarations: [MovieStoreComponent, CounterDirective, CartDetailComponent, CheckOutComponent],
     exports:[MovieStoreComponent,CounterDirective,CartDetailComponent,CheckOutComponent]
 })

@@ -11,26 +11,21 @@ let DB = require('../config/db');
 let userModel = require('../models/user');
 let User = userModel.User; // alias
 
-module.exports.displayLoginPage = (req, res, next) => {
-    // check if the user is already logged in
-    if(!req.user)
-    {
-        res.render('auth/login', 
-        {
-           title: "Login",
-           messages: req.flash('loginMessage'),
-           displayName: req.user ? req.user.displayName : '' 
-        })
+module.exports.displayUserList = async(req,res,next) => {
+    try{
+    displayList = await User.find();
+    res.json(displayList);
     }
-    else
-    {
-        return res.redirect('/');
-    }
-}
+    catch(err){
+        console.error(err);
+    }      
 
-module.exports.processLoginPage = (req, res, next) => {
-    passport.authenticate('local',
+    };
+
+module.exports.processLoginPage = (req, res, next) => {    
+    passport.authenticate('jwt',
     (err, user, info) => {
+        
         // server err?
         if(err)
         {
@@ -39,8 +34,11 @@ module.exports.processLoginPage = (req, res, next) => {
         // is there a user login error?
         if(!user)
         {
-            req.flash('loginMessage', 'Authentication Error');
-            return res.redirect('/login');
+            if (info.name === 'TokenExpiredError') {
+                return res.status(403).send(info.name);
+            }
+            else {
+                return res.status(401).send(info.message);}
         }
         req.login(user, (err) => {
             // server error?
@@ -69,29 +67,13 @@ module.exports.processLoginPage = (req, res, next) => {
     })(req, res, next);
 }
 
-module.exports.displayRegisterPage = (req, res, next) => {
-    // check if the user is not already logged in
-    if(!req.user)
-    {
-        res.render('auth/register',
-        {
-            title: 'Register',
-            messages: req.flash('registerMessage')
-            
-        });
-    }
-    else
-    {
-        return res.redirect('/');
-    }
-}
-
 module.exports.processRegisterPage = (req, res, next) => {
     // instantiate a user object
     let newUser = new User({
         username: req.body.username,
-        //password: req.body.password
-        email: req.body.email               
+        password: req.body.password,
+        email: req.body.email,
+        displayName: req.body.displayName               
     });
 
     User.register(newUser, req.body.password, (err) => {
@@ -106,11 +88,7 @@ module.exports.processRegisterPage = (req, res, next) => {
                 );
                 console.log('Error: User Already Exists!')
             }
-            return res.render('auth/register',
-            {
-                title: 'Register',
-                messages: req.flash('registerMessage')                
-            });
+            res.json({success: true, msg: "Successfully Registered User"});
         }
         else
         {
@@ -122,6 +100,32 @@ module.exports.processRegisterPage = (req, res, next) => {
         }
     });
 }
+
+module.exports.validateToken = (req, res, next) => {
+    // Extract the token from the Authorization header
+    const token = req.header('Authorization')?.split(' ')[1];
+  
+    if (!token) {
+      return res.status(401).json({ success: false, message: 'Token not provided' });
+    }
+  
+    try {
+      // Verify the token using the secret key
+      const decoded = jwt.verify(token, DB.Secret);
+  
+      // The decoded object will contain the payload of the token, including user information
+      // You can access the user ID, username, email, etc. using decoded.id, decoded.username, decoded.email, etc.
+  
+      // Optionally, you can attach the decoded payload to the request object for further use in other routes
+      req.user = decoded;
+  
+      // Move to the next middleware or route handler
+      next();
+    } catch (err) {
+      // If the token is invalid or expired, an error will be thrown
+      return res.status(401).json({ success: false, message: 'Invalid token' });
+    }
+  }
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();

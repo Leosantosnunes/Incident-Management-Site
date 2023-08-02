@@ -8,10 +8,11 @@ import { Order } from './order.model';
 import { OrderRepository } from './order.repository';
 import { ContactRepository } from './contact.repository';
 import { Contact } from './contact.model';
-import { AuthModel } from './auth.model';
+import { User } from './user.model';
+import { AuthService } from './auth.service';
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [MovieRepository,StaticDataSource,Cart,Order,OrderRepository,RestDataSource,ContactRepository,Contact,AuthModel,{provide:StaticDataSource,useClass:RestDataSource}]
+    providers: [MovieRepository,StaticDataSource,Cart,Order,OrderRepository,RestDataSource,ContactRepository,Contact,User,AuthService,{provide:StaticDataSource,useClass:RestDataSource}]
 })
 export class ModelModule{}

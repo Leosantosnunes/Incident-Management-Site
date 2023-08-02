@@ -89,17 +89,27 @@ let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = DB.Secret;
 
-let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
-  User.findById(jwt_payload.id)
-    .then(user => {
+
+
+let strategy = new JWTStrategy(jwtOptions, async (jwt_payload, done) => {
+  try {
+    const user = await User.findById(jwt_payload.id);
+
+    if (user) {
       return done(null, user);
-    })
-    .catch(err => {
-      return done(err, false);
-    });
+    } else {
+      return done(null, false);
+      // or you could create a new account
+    }
+  } catch (err) {
+    return done(err, false);
+  }
 });
 
 passport.use(strategy);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

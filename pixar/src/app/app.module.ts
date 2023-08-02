@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 
 
 
+
 export function jwtTokenGetter():string
 {
   return localStorage.getItem('id_token')!;

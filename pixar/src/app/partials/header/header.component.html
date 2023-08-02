@@ -9,7 +9,10 @@
           <li class="navbar-text"><a class="nav-link" href="/movieStore">Store</a></li>
           <li class="navbar-text"><a class="nav-link" href="/library">Library</a></li>
           <li class="navbar-text"><a class="nav-link" href="/about">About</a></li>
-          <li class="navbar-text"><a class="nav-link" href="/contact">Contact</a></li>          
+          <li class="navbar-text"><a class="nav-link" href="/contact">Contact</a></li>
+          <li class="navbar-text" *ngIf="!isLoggedIn()"><a class="nav-link" href="/admin/main">Admin</a></li>
+          <li class="navbar-text" *ngIf="!isLoggedIn()"><a class="nav-link" href="/admin/main" (click)="onLogoutClick()" routerLink="logout">Log out</a></li>
+          <li class="navbar-text"><i>Welcome {{user.displayName}}</i></li>          
           <li class="navbar-text">
             <app-cart-summary></app-cart-summary>
           </li>

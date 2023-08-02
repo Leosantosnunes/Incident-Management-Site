@@ -1,5 +1,5 @@
 
-
+<app-header></app-header>
 <div class="container m-5">
     <div class="row">
         <div class="col">
@@ -21,14 +21,21 @@
 
 <div class="container">
     <div class="row">
-        <div *ngFor='let movie of movies' class="col" style="max-width: 250px;">
-            <img src="assets/images/{{movie.posterUrl}}" alt="poster" style="min-width: 200px; max-width: 100%;">
-            <h4>{{movie.title }}
-                <span class="badge text-bg-success">
-                    {{movie.price | currency: 'USD':'symbol':'1.2-2'}}
-                </span>
-            </h4>
-            <button class="btn btn-info" (click)="addMovieToCart(movie)">Add to Cart </button>
+        <div *ngFor='let movie of movies' class="Movielist col" style="max-width: 250px;">
+            <div [ngClass]="{'visually-hidden': hidden, '': !hidden}" > 
+                <p>Synopsis:</p>
+                <p>{{movie.overview}}</p>
+            </div>
+            <div class="shadow p-3 mb-5 bg-body rounded">
+                <img src="assets/images/{{movie.posterUrl}}" alt="poster" style="min-width: 200px; max-width: 100%;" (mouseout)="mouseOut()" (mouseover)="handleMouseOver($event)">
+                <div class="d-flex flex-column align-items-center">
+                    <h4 class="m-1">{{movie.title }}</h4>
+                    
+                    <h4 class="badge text-bg-success m-2">{{movie.price | currency: 'USD':'symbol':'1.2-2'}}</h4>
+                    
+                    <button class="btn btn-info m-1" (click)="addMovieToCart(movie)">Add to Cart </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

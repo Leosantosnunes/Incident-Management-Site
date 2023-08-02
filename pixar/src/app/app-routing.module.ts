@@ -10,10 +10,12 @@ import { CartDetailComponent } from './movie-store/cart-detail/cart-detail.compo
 import { StoreFirstGuard } from './guards/storeFirst.guard';
 import { SigninComponent } from './auth/signin/signin.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AdminComponent } from './auth/admin.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'admin', component:AdminComponent},
+  {path: 'login', component: LoginComponent },
   {path: 'register', component: SigninComponent },
   {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}, canActivate:[StoreFirstGuard]},
   {path: 'cart', component: CartDetailComponent, data:{title:'Shopping-Cart'}, canActivate:[StoreFirstGuard]},

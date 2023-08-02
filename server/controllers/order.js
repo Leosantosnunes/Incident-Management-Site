@@ -5,17 +5,17 @@ let Store = require("../models/store");
 let Cart = Store.Cart;
 let Movie = Store.Movie;
 
-module.exports.displayOrderList = (req,res,next) => {
-    Order.find((err, orderList) => {
-        if(err){
-            return console.error(err);
-        }
-        else{
-            res.json(orderList);
-        }
+module.exports.displayOrderList = async(req,res,next) => {
+    try{
+    displayList = await Order.find();
+    res.json(displayList);
+    }
+    catch(err){
+        console.error(err);
+    }      
 
-    });
-}
+    };
+
 
 module.exports.processAddPage = async(req,res,next) => {
     //Serialize the cart data
