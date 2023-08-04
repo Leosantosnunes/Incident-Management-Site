@@ -1,9 +1,10 @@
 let express = require('express');
-let router = express.Router();
 let Order = require("../models/order");
 let Store = require("../models/store");
 let Cart = Store.Cart;
-let Movie = Store.Movie;
+let Movie = require("../models/movie");
+let UserModel = require("../models/user")
+let User= UserModel.User;
 
 module.exports.displayOrderList = async(req,res,next) => {
     try{
@@ -12,8 +13,7 @@ module.exports.displayOrderList = async(req,res,next) => {
     }
     catch(err){
         console.error(err);
-    }      
-
+    } 
     };
 
 
@@ -21,17 +21,26 @@ module.exports.processAddPage = async(req,res,next) => {
     //Serialize the cart data
     
     let cart = new Cart();
+    let movieID = req.body.userID;
+    const movies = [];       
 
     //Serialize the Line data
     for(let line of req.body.cart.lines){
-        let movie = new Movie(
-            line.movie._id,
-            line.movie.title,
-            line.movie.overview,
-            line.movie.price
-        );
+        let movie = new Movie(line.movie);           
         let quantity = line.quantity;
-        cart.lines.push({movie, quantity});
+        cart.lines.push({movie, quantity}); 
+        movies.push(movie);
+    }
+
+    
+    
+    try{
+        const AddMovie = await User.findByIdAndUpdate(movieID,{movies:movies});        
+        console.log(AddMovie);        
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({ error: 'An error occurred while fetching movie list.' });
     }
 
     cart.itemCount = req.body.cart.itemCount;
@@ -39,6 +48,7 @@ module.exports.processAddPage = async(req,res,next) => {
 
     let newOrder = Order({
         "title": req.body.title,
+        "name": req.body.name,
         "address": req.body.address,
         "city": req.body.city,
         "province": req.body.province,

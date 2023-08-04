@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Movie } from "./movie.model";
 
 
 //@Injectable()
@@ -8,14 +9,9 @@ export class User
     password ?: String;
     displayName ?: String;
     email ?: String;
-    _id?: number;
-    title?: string;
-    overview ?: string;
-    director ?: string;
-    releaseDate ?: Date;
-    imdbRating ?: number;
-    posterUrl?: string;
-    price ?: number 
+    _id ?: Number;
+    movies ?: Movie;
+    
     
 
     constructor(){}

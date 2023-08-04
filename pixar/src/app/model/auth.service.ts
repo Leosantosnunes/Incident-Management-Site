@@ -12,14 +12,14 @@ export class AuthService
     constructor(private datasource: RestDataSource){}
 
     authenticate(user: User): Observable<any>
-    {       
+    {          
         return this.datasource.authenticate(user);        
     }
 
     storeUserData(token:any,user:User): void
     {        
         this.datasource.storeUserData(token,user);        
-    }
+    }    
 
     get authenticated(): Boolean
     {

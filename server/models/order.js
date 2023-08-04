@@ -3,6 +3,7 @@ let mongoose = require('mongoose');
 //create an order model class
 
 let Order = mongoose.Schema({
+    userID : Number,
     name: String,
     address: String,
     city: String,
@@ -18,6 +19,7 @@ let Order = mongoose.Schema({
                 {
                     title: String,
                     overview: String,
+                    posterUrl: String,
                     price: Number
                 },
                 quantity: Number

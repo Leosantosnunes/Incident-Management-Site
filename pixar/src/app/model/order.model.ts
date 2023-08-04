@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Cart } from "./cart.model";
+import { User } from "./user.model";
 
 
 @Injectable()
 export class Order 
 {
     public _id ?: number;
+    public userID ?: number;    
     public name ?: string;
     public address ?: string;
     public city ?: string;
@@ -19,6 +21,7 @@ export class Order
     clear(): void
     {
         this._id = undefined;
+        this.userID = undefined;
         this.name = '' ;
         this.address = '';
         this.city = '';

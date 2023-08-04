@@ -52,6 +52,11 @@ export class RestDataSource
         return this.http.post<any>(this.baseUrl + 'register', user);
     }
 
+    displayUserLoggedIn(user:User): Observable<any>
+    {
+        return this.http.post<any>(this.baseUrl + 'library', user);
+    }
+
     authenticate(user:User): Observable<any>
     {        
         return this.http.post<any>(this.baseUrl + 'login', user,this.httpOptions);
@@ -63,6 +68,11 @@ export class RestDataSource
         this.user = user;        
         localStorage.setItem('id_token', 'Bearer ' + token);
         localStorage.setItem('user', JSON.stringify(user));       
+    }
+
+    displayUserID(): Number
+    {           
+        return this.user?._id!;       
     }
 
     logout(): Observable<any>

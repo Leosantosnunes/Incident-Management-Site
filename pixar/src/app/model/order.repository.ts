@@ -1,14 +1,18 @@
 import { Injectable } from "@angular/core";
 import { Order } from "./order.model";
-import { StaticDataSource } from "./static.datasource";
 import { Observable } from "rxjs";
 import { RestDataSource } from "./rest.datasource";
+import { User } from "./user.model";
+
 
 @Injectable()
 export class OrderRepository
 {
     private orders : Order[] = [];
     private loaded = false;
+    private user = String;
+    
+    
 
     constructor(private dataSource: RestDataSource){}
 
@@ -28,7 +32,16 @@ export class OrderRepository
     }
 
     saveOrder(order:Order): Observable<Order>
-    {
+    {   
+        const userString =  localStorage.getItem('user');
+        if (typeof userString === 'string') {
+            const userObject = JSON.parse(userString);
+            const _id = userObject._id;
+            console.log(_id);
+            order.userID = _id;
+          } else {
+            console.error('Invalid user data in localStorage.');
+          }
         return this.dataSource.saveOrder(order);
     }
 }
