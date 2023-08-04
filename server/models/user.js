@@ -32,7 +32,19 @@ let User = mongoose.Schema
             default: "",
             trim: true,
             required: "email address is required"
-        }, 
+        },
+        movies:{title: String,
+            overview: String,
+            director: String,     
+            releaseDate: {
+              type: Date,
+              get: function (value) {
+                // Formatting the date as YYYY-MM-DD
+                return value.toISOString().split('T')[0];
+              },
+            imdbRating:Number,
+            posterUrl:String,
+            price: Number}},
         created:
         {
             type: Date,

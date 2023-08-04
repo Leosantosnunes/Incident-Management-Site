@@ -1,4 +1,4 @@
-"use strict"
+/*"use strict"
 
 class Movie
 {
@@ -68,3 +68,4 @@ module.exports.Cart = Cart;
 module.exports.Line = Line;
 module.exports.Movie = Movie;
 
+*/

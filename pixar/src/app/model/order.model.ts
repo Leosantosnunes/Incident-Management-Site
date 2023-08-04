@@ -12,7 +12,7 @@ export class Order
     public province ?: string
     public postalCode ?: string;
     public country ?: string
-    public shipped = false;
+   
     
     constructor(public cart:Cart){}
 
@@ -24,8 +24,7 @@ export class Order
         this.city = '';
         this.province = '';
         this.postalCode = '';
-        this.country = '';
-        this.shipped = false;
+        this.country = '';        
         this.cart.clear();
     }
 

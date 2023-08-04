@@ -13,6 +13,7 @@ export class StoreFirstGuard
     {        
         if(this.firstNavigation){
             this.firstNavigation = false;
+            console.log(this.firstNavigation);
             if(route.component !== MovieStoreComponent){
                 this.router.navigateByUrl('/movieStore');
                 return false;

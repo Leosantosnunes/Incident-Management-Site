@@ -27,8 +27,7 @@ user: User = new User();
 
   isLoggedIn(): Boolean
   {
-    const result = this.authService.authenticated;
-    console.log(result);
+    const result = this.authService.authenticated;    
     if (result)
     {
       this.user = JSON.parse(localStorage.getItem('user')!);

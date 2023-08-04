@@ -7,5 +7,17 @@ export class User
     username ?: String;
     password ?: String;
     displayName ?: String;
-    email ?: String;   
+    email ?: String;
+    _id?: number;
+    title?: string;
+    overview ?: string;
+    director ?: string;
+    releaseDate ?: Date;
+    imdbRating ?: number;
+    posterUrl?: string;
+    price ?: number 
+    
+
+    constructor(){}
+      
 }

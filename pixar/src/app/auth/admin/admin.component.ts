@@ -9,9 +9,6 @@ import { AuthService } from "../../model/auth.service";
 })
 export class AdminComponent implements OnInit
 {
-
-    
-
     constructor(private auth: AuthService,
         private router: Router) {console.log('test')}   
 
@@ -24,6 +21,6 @@ export class AdminComponent implements OnInit
     {
         this.auth.logout();
 
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/home')
     }
 }
