@@ -33,7 +33,7 @@ let User = mongoose.Schema
             trim: true,
             required: "email address is required"
         },
-        movies:{title: String,
+        movies:[{title: String,
             overview: String,
             director: String,     
             releaseDate: {
@@ -41,10 +41,10 @@ let User = mongoose.Schema
               get: function (value) {
                 // Formatting the date as YYYY-MM-DD
                 return value.toISOString().split('T')[0];
-              },
+              }},
             imdbRating:Number,
             posterUrl:String,
-            price: Number}},
+            price: Number}],
         created:
         {
             type: Date,

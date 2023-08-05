@@ -19,4 +19,6 @@ router.post('/login',passport.authenticate('local'), indexController.processLogi
 
 router.post('/register', indexController.processRegisterPage);
 
+router.get('/library/:_id', indexController.getCurrentUserWithMovies);
+
 module.exports = router;

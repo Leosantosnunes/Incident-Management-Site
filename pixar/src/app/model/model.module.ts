@@ -9,9 +9,10 @@ import { ContactRepository } from './contact.repository';
 import { Contact } from './contact.model';
 import { User } from './user.model';
 import { AuthService } from './auth.service';
+import { LibraryRepository } from './library.repository';
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [MovieRepository,Cart,Order,OrderRepository,RestDataSource,ContactRepository,Contact,User,AuthService]
+    providers: [MovieRepository,Cart,Order,OrderRepository,RestDataSource,ContactRepository,Contact,User,AuthService, LibraryRepository]
 })
 export class ModelModule{}

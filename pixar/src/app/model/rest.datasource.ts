@@ -50,12 +50,12 @@ export class RestDataSource
     registerNewUser(user:User): Observable<any>
     {
         return this.http.post<any>(this.baseUrl + 'register', user);
-    }
+    }    
 
-    displayUserLoggedIn(user:User): Observable<any>
-    {
-        return this.http.post<any>(this.baseUrl + 'library', user);
-    }
+    getCurrentUser(id:Number): Observable<User> {                   
+        // Send a GET request to retrieve the current user's information
+        return this.http.get<User>(`${this.baseUrl}library/${id}`, this.httpOptions);
+      }
 
     authenticate(user:User): Observable<any>
     {        

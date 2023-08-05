@@ -83,3 +83,21 @@ module.exports.performLogout = (req, res, next) => {
     }
    };
 
+
+module.exports.getCurrentUserWithMovies = async (req, res, next) => {
+    const userId = req.params._id;
+  
+    try {
+      const user = await User.findById(userId);
+      //console.log(user);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(user);
+    } catch (err) {
+      console.error(err);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'application/json');
+      res.json({ error: 'Internal Server Error' });
+    }  
+  };
+

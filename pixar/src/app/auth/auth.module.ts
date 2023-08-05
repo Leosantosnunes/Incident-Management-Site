@@ -8,7 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { AuthGuard } from "../guards/auth.guard";
 import { CommonModule } from "@angular/common";
 import { PartialsModule } from "../partials/partials.module";
-import { AdminComponent } from "./admin/admin.component";
+import { AdminComponent } from "../admin/admin/admin.component";
 
 
 @NgModule({

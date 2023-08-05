@@ -11,7 +11,7 @@ import { CartDetailComponent } from './movie-store/cart-detail/cart-detail.compo
 import { StoreFirstGuard } from './guards/storeFirst.guard';
 import { SigninComponent } from './auth/signin/signin.component';
 import { LoginComponent } from './auth/login/login.component';
-import { AdminComponent } from './auth/admin/admin.component';
+import { AdminComponent } from './admin/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [

@@ -6,6 +6,8 @@ let Movie = require("../models/movie");
 let UserModel = require("../models/user")
 let User= UserModel.User;
 
+
+//Display All Orders
 module.exports.displayOrderList = async(req,res,next) => {
     try{
     displayList = await Order.find();
@@ -21,26 +23,26 @@ module.exports.processAddPage = async(req,res,next) => {
     //Serialize the cart data
     
     let cart = new Cart();
-    let movieID = req.body.userID;
-    const movies = [];       
+
+    let movieID = req.body.userID;       
+    const AddMovie = await User.findById(movieID);   
 
     //Serialize the Line data
     for(let line of req.body.cart.lines){
         let movie = new Movie(line.movie);           
         let quantity = line.quantity;
         cart.lines.push({movie, quantity}); 
-        movies.push(movie);
-    }
-
+        AddMovie.movies.push(movie);
+    }    
     
-    
+    //Add the movie to the User Account
     try{
-        const AddMovie = await User.findByIdAndUpdate(movieID,{movies:movies});        
+        await AddMovie.save();        
         console.log(AddMovie);        
     }
     catch(err){
         console.log(err);
-        res.status(500).json({ error: 'An error occurred while fetching movie list.' });
+        res.status(500).json({ error: 'An error occurred while fetching movie information.' });
     }
 
     cart.itemCount = req.body.cart.itemCount;
@@ -61,7 +63,7 @@ module.exports.processAddPage = async(req,res,next) => {
     //Add new Order Object to the Database
     try{
         const createdOrder = await Order.create(newOrder);
-        console.log(createdOrder);
+        //console.log(createdOrder);
         res.json({success: true, msg: "Successfully Added new Order"});
     }
     catch(err){
