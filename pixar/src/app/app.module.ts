@@ -6,16 +6,12 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { AuthModule } from './auth/auth.module';
-import { AdminModule } from './admin/admin.module';
-
-
 
 
 export function jwtTokenGetter():string
 {
   return localStorage.getItem('id_token')!;
 }
-
 
 @NgModule({
   declarations: [
@@ -25,8 +21,7 @@ export function jwtTokenGetter():string
     BrowserModule,
     AppRoutingModule,    
     MovieStoreModule,
-    AuthModule,
-    AdminModule,
+    AuthModule,    
     PagesModule,  
     JwtModule.forRoot({config:{tokenGetter: jwtTokenGetter}})
   ],
