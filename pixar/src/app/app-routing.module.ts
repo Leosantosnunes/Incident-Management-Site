@@ -13,10 +13,12 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { MovieTableComponent } from './admin/movie-table/movie-table.component';
+import { MovieEditorComponent } from './admin/movie-editor/movie-editor.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},  
   {path: 'login', component: LoginComponent },
   {path: 'register', component: SigninComponent },
   {path: 'movieStore', component: MovieStoreComponent, data:{title:'Store'}, canActivate:[AuthGuard]},

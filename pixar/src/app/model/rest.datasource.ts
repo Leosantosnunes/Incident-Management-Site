@@ -36,11 +36,32 @@ export class RestDataSource
         `${PROTOCOL}://${location.hostname}:${PORT}/`;
     }
 
-    getMovies(address: String): Observable<Movie[]>
+    getMovies(): Observable<Movie[]>
     {
 
-        return this.http.get<Movie[]>(this.baseUrl + address);
+        return this.http.get<Movie[]>(this.baseUrl + 'movieStore');
     }
+
+    addMovie(movie: Movie): Observable<Movie>
+  {
+    this.loadToken();
+    return this.http.post<Movie>(this.baseUrl + 'movie-list/add', movie, this.httpOptions);
+  }
+
+    updateMovie(movie: Movie): Observable<Movie>
+  {
+    this.loadToken();
+    return this.http.post<Movie>(`${this.baseUrl}movie-list/edit/${movie._id}`, movie, this.httpOptions);
+  }
+
+    deleteMovie(id: number): Observable<Movie>
+  {
+    this.loadToken();
+
+    console.log(id);
+
+    return this.http.get<Movie>(`${this.baseUrl}movie-list/delete/${id}`, this.httpOptions);
+  }
 
     saveOrder(order: Order): Observable<Order>
     {

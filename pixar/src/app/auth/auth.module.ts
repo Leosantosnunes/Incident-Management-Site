@@ -14,7 +14,7 @@ import { AdminComponent } from "../admin/admin/admin.component";
 @NgModule({
     imports: [RouterModule, ModelModule,CommonModule, FormsModule,PartialsModule],
     providers:[AuthGuard],
-    declarations: [HomeComponent,LoginComponent,SigninComponent,AdminComponent]    
+    declarations: [HomeComponent,LoginComponent,SigninComponent]    
 })
 export class AuthModule{};
 

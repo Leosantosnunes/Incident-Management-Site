@@ -1,0 +1,36 @@
+<table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Release Date</th>        
+        <th>Poster </th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let m of getMovies()'>
+        <td>{{ m.title }}</td>
+        <td>{{ m.director }}</td>
+        <td>{{ m.releaseDate }}</td>        
+        <td>{{ m.posterUrl }}</td>
+        <td>{{ m.price | currency: 'USD': 'symbol': '2.2-2'}}</td>
+        <td>
+          <button class="btn btn-sm btn-primary m-1" (click)='handleCRUD($event,"edit")'>
+             Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-danger m-1" (click)='handleCRUD($event,"remove")'>
+             Delete
+          </button> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)='addMovie()'>
+     Add New Movie
+  </button>
+  
