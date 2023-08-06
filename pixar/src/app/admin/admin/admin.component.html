@@ -1,25 +1,26 @@
-<div class="container-fluid">
-    <div class="row"></div>
-  
-    <div class="row mt-2">
-      <div class="col-3">
-        <button class="btn btn-outline-info btn-block"
-          routerLink='/admin/movies'
-          routerLinkActive='active'>
-          Movies
-        </button>
-  
-        <button class="btn btn-outline-info btn-block"
-          routerLink='/admin/orders'
-          routerLinkActive='active'>
-          Orders
-        </button>
+<div class="container-fluid">   
+      <div class=" d-flex flex-column  align-items-center">
+        <div>
+          <h1>Welcome Admin</h1>
+        </div>
+        <div>
+          <button class="btn btn-outline-info btn-block m-3"
+            routerLink='/admin/movies'
+            routerLinkActive='active'>
+            Movies
+          </button>
+          <button class="btn btn-outline-info btn-block m-3"
+            routerLink='/admin/orders'
+            routerLinkActive='active'>
+            Orders
+          </button>
+        </div>
       </div>
   
-      <div class="col-9">
+      <div class=''>
         <router-outlet></router-outlet>
       </div>
-    </div>
-  </div>
+</div>
+  
   
 

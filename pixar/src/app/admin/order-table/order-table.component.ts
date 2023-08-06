@@ -7,8 +7,7 @@ import { OrderRepository } from 'src/app/model/order.repository';
   templateUrl: './order-table.component.html',
 })
 export class OrderTableComponent
-{
-  includeShipped = false;
+{  
 
   constructor(private repository: OrderRepository,
               private router: Router) { }

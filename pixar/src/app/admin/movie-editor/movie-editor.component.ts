@@ -17,11 +17,11 @@ export class MovieEditorComponent {
               private router: Router,
               activeRoute: ActivatedRoute)
   {
-    //this.editing = activeRoute.snapshot.params.mode === 'edit';
+    this.editing = activeRoute.snapshot.params['mode'] === 'edit';
 
     if (this.editing)
     {
-     // Object.assign(this.movie, repository.getMovie(activeRoute.snapshot.params.id));
+     Object.assign(this.movie, repository.getMovie(activeRoute.snapshot.params['id']));
     }
   }  
 

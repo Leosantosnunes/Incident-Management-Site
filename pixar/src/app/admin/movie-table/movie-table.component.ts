@@ -13,9 +13,6 @@ export class MovieTableComponent {
   constructor(private repository: MovieRepository,
     private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
   getMovies(): Movie[]
   {   
     return this.repository.getMovies();
