@@ -76,7 +76,7 @@ module.exports.performDelete = async (req, res, next) => {
     let id = req.params.id;
 
     try{ 
-        await Order.deleteOne({_id: id})
+        await Order.deleteOne({_id: id});
         res.json({success: true, msg: 'Successfully Deleted Order'});
     }
     catch(err)

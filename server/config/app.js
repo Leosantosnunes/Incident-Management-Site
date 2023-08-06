@@ -10,7 +10,7 @@ let session = require('express-session');
 let passport = require('passport');
 
 
-let flash = require('connect-flash');
+//let flash = require('connect-flash');
 
 //Database Setup
 let mongoose = require('mongoose');
@@ -26,7 +26,6 @@ mongoDB.once('open', () => {
 
 
 var indexRouter = require('../routes/index');
-var usersRouter = require('../routes/users');
 var movieRouter = require('../routes/movie');
 var contactRouter = require('../routes/contact');
 var ordersRouter = require('../routes/order');
@@ -54,14 +53,13 @@ app.use(session({
 }));
 
 //Initialize flash
-app.use(flash());
+//app.use(flash());
 
 //initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/movieStore', movieRouter);
 app.use('/contact', contactRouter);
 app.use('/orders', ordersRouter)

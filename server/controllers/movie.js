@@ -48,22 +48,6 @@ module.exports.processAddPage = async(req, res, next) => {
 
 }
 
-module.exports.displayEditPage = (req, res, next) => {
-    let id = req.params.id;
-
-    Movie.findById(id, (err, movieToEdit) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            res.json({success: true, msg: 'Successfully Displayed Movie to Edit', movie: movieToEdit});
-        }
-    });
-}
-
 module.exports.processEditPage = (req, res, next) => {
     let id = req.params.id
 

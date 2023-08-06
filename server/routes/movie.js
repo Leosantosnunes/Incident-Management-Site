@@ -10,12 +10,8 @@ let jwt = require('jsonwebtoken');
 /* GET Route for the Movie List page - READ Operation */
 router.get('/', movieController.displayMovieList);
 
-
 /* POST Route for processing the Add page - CREATE Operation */
 router.post('/add', passport.authenticate('jwt', {session: false}), movieController.processAddPage);
-
-/* GET Route for displaying the Edit page - UPDATE Operation */
-router.get('/edit/:id', passport.authenticate('jwt', {session: false}), movieController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
 router.post('/edit/:id', passport.authenticate('jwt', {session: false}), movieController.processEditPage);
