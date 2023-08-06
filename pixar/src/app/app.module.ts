@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { AuthModule } from './auth/auth.module';
+import { OrderTableComponent } from './admin/order-table/order-table.component';
 
 
 export function jwtTokenGetter():string
@@ -15,7 +16,8 @@ export function jwtTokenGetter():string
 
 @NgModule({
   declarations: [
-    AppComponent      
+    AppComponent,
+    OrderTableComponent      
   ],
   imports: [
     BrowserModule,

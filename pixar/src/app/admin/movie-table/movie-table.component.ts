@@ -17,8 +17,7 @@ export class MovieTableComponent {
   }
 
   getMovies(): Movie[]
-  {
-    console.log(this.repository.getMovies());
+  {   
     return this.repository.getMovies();
   }
 
@@ -42,26 +41,8 @@ export class MovieTableComponent {
 
   editMovie(id : number): void
   {
-  this.router.navigateByUrl('/admin/movies/edit/' + id);
+  this.router.navigateByUrl('/admin/movies/edit/' + id);  
   }
-
-  handleCRUD(event: Event, action: String): void {
-    const method = (event.target as HTMLSelectElement).value;
-    if (method == '') {
-      
-    }
-    else{  
-      if(action = "edit") 
-      {     
-      this.editMovie(Number(method));
-      }
-      else if(action = "remove")
-      {
-        this.deleteMovie(Number(method));
-      }
-    }
-  } 
-
 }
 
 

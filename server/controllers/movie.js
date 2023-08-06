@@ -22,7 +22,7 @@ module.exports.displayAddPage = (req, res, next) => {
     res.json({success: true, msg: 'Succesfully Displayed Add Page'});
 }
 
-module.exports.processAddPage = (req, res, next) => {
+module.exports.processAddPage = async(req, res, next) => {
     let newMovie = Movie({
         "title": req.body.title,
         "overview": req.body.overview,
@@ -31,19 +31,20 @@ module.exports.processAddPage = (req, res, next) => {
         "imdbRating": req.body.imdbRating,
         "price": req.body.price,
         "posterUrl": req.body.posterUrl
+        
     });
-
-    Movie.create(newMovie, (err, Movie) =>{
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            res.json({success: true, msg: 'Successfully Added New Movie'});
-        }
-    });
+    console.log(newMovie);
+    try
+    {
+        await Movie.create(newMovie);
+        res.json({success: true, msg: 'Successfully Added New Movie'});
+        
+    }
+    catch(err)
+    {         
+        console.log(err);
+        res.status(400).json({ error: 'Failed to add a new movie.' });      
+    };
 
 }
 

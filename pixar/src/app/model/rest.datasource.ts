@@ -45,13 +45,13 @@ export class RestDataSource
     addMovie(movie: Movie): Observable<Movie>
   {
     this.loadToken();
-    return this.http.post<Movie>(this.baseUrl + 'movie-list/add', movie, this.httpOptions);
+    return this.http.post<Movie>(this.baseUrl + 'movieStore/add', movie, this.httpOptions);
   }
 
     updateMovie(movie: Movie): Observable<Movie>
   {
     this.loadToken();
-    return this.http.post<Movie>(`${this.baseUrl}movie-list/edit/${movie._id}`, movie, this.httpOptions);
+    return this.http.post<Movie>(`${this.baseUrl}movieStore/edit/${movie._id}`, movie, this.httpOptions);
   }
 
     deleteMovie(id: number): Observable<Movie>
@@ -60,12 +60,24 @@ export class RestDataSource
 
     console.log(id);
 
-    return this.http.get<Movie>(`${this.baseUrl}movie-list/delete/${id}`, this.httpOptions);
+    return this.http.get<Movie>(`${this.baseUrl}movieStore/delete/${id}`, this.httpOptions);
   }
 
     saveOrder(order: Order): Observable<Order>
     {
         return this.http.post<Order>(this.baseUrl + 'orders/add', order);
+    }
+
+    deleteOrder(id: number): Observable<Order>
+    {
+    this.loadToken();
+    return this.http.get<Order>(`${this.baseUrl}orders/delete/${id}`, this.httpOptions);
+    }
+
+    updateOrder(order: Order): Observable<Order>
+    {
+      this.loadToken();
+      return this.http.post<Order>(`${this.baseUrl}orders/edit/${order._id}`, order, this.httpOptions);
     }
 
     registerNewUser(user:User): Observable<any>

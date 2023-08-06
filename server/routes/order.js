@@ -7,13 +7,6 @@ let passport = require("passport");
 
 let orderController = require("../controllers/order");
 
-function requireAuth(req, res, next){
-    //check if user is logged in
-    if(!req.isAuthenticated()){
-        return res.redirect('/login');
-    }
-    next();
-}
 
 /*GET Order List page -- READ Operation*/
 router.get('/', orderController.displayOrderList);
@@ -21,5 +14,9 @@ router.get('/', orderController.displayOrderList);
 /* POST Route for processing the add order*/
 
 router.post('/add', orderController.processAddPage);
+
+/* POST Route for processing the delete order*/
+
+router.get('/delete/:id', passport.authenticate('jwt', {session: false}), orderController.performDelete);
 
 module.exports = router;

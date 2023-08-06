@@ -44,4 +44,19 @@ export class OrderRepository
           }
         return this.dataSource.saveOrder(order);
     }
+
+    updateOrder(updatedOrder: Order): void
+  {
+    this.dataSource.updateOrder(updatedOrder).subscribe(order => {
+      this.orders.splice(this.orders.findIndex(o => o._id === order._id), 1, order);
+    });
+  }
+
+    deleteOrder(id: number): void
+    {
+      this.dataSource.deleteOrder(id).subscribe(order => {
+        this.orders.splice(this.orders.findIndex(o => id === o._id), 1);
+      });
+    }
+
 }

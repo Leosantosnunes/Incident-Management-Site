@@ -71,3 +71,16 @@ module.exports.processAddPage = async(req,res,next) => {
         res.status(500).json({ error: 'An error occurred while fetching movie list.' });
     }       
 }
+
+module.exports.performDelete = async (req, res, next) => {
+    let id = req.params.id;
+
+    try{ 
+        await Order.deleteOne({_id: id})
+        res.json({success: true, msg: 'Successfully Deleted Order'});
+    }
+    catch(err)
+    {
+        console.log(err);
+    }        
+}
