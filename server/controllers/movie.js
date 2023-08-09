@@ -27,7 +27,7 @@ module.exports.processAddPage = async(req, res, next) => {
         "title": req.body.title,
         "overview": req.body.overview,
         "director": req.body.director,
-        "release_date": req.body.release_date,
+        "releaseDate": req.body.release_date,
         "imdbRating": req.body.imdbRating,
         "price": req.body.price,
         "posterUrl": req.body.posterUrl
@@ -48,44 +48,40 @@ module.exports.processAddPage = async(req, res, next) => {
 
 }
 
-module.exports.processEditPage = (req, res, next) => {
+module.exports.processEditPage = async(req, res, next) => {
     let id = req.params.id
+    console.log(id);
 
-    let updatedMovie = Movie({
-        "title": req.body.title,
-        "overview": req.body.overview,
-        "director": req.body.director,
-        "release_date": req.body.release_date,
-        "imdbRating": req.body.imdbRating,
-        "price": req.body.price,
-        "posterUrl": req.body.posterUrl
-    });
+    try{ 
+    const existingMovie = await Movie.findById(id);
 
-    Movie.updateOne({_id: id}, updatedMovie, (err) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {            
-            res.json({success: true, msg: 'Successfully Edited Movie', movie: updatedMovie});
-        }
-    });
+        // Update the fields of the existing movie
+        existingMovie.title = req.body.title;
+        existingMovie.director = req.body.director;
+        existingMovie.release_date = req.body.releaseDate;
+        existingMovie.price = req.body.price;
+
+        // Save the changes
+        const updatedMovie = await existingMovie.save();
+        console.log(updatedMovie);
+        
+        res.json({ success: true, msg: 'Successfully Edited Movie', movie: updatedMovie });
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 }
 
-module.exports.performDelete = (req, res, next) => {
+module.exports.performDelete = async(req, res, next) => {
     let id = req.params.id;
 
-    Movie.remove({_id: id}, (err) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            res.json({success: true, msg: 'Successfully Deleted Movie'});
-        }
-    });
+    try{ 
+    const result = await Movie.findByIdAndRemove(id);
+    res.json({success: true, msg: 'Successfully Deleted Movie'});
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
 }
