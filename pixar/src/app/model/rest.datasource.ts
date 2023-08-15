@@ -93,7 +93,6 @@ export class RestDataSource
     authenticate(user:User): Observable<any>
     {        
         return this.http.post<any>(this.baseUrl + 'login', user,this.httpOptions);
-        
     }
 
     storeUserData(token:any, user: User): void

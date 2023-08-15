@@ -10,7 +10,10 @@ const movieModel = mongoose.Schema(
         type: Date,
         get: function (value) {
           // Formatting the date as YYYY-MM-DD
-          return value.toISOString().split('T')[0];
+          if (value) {
+            return value.toISOString().split('T')[0];
+          }
+          return null; // or some default value if needed        
         }},
       imdbRating:Number,
       posterUrl:String,
